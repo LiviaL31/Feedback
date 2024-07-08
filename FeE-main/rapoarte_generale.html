@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapoarte Generale</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(loadFormulare);
+
+        function loadFormulare() {
+            $.ajax({
+                url: 'raspunsuri.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    var options = '';
+                    $.each(response, function(index, item) {
+                        options += '<option value="' + item.formular_id + '">' + item.formular_id + '</option>';
+                    });
+                    $('#formular').html(options);
+                    // La încărcarea inițială a paginii, afișează detaliile primului formular (dacă există)
+                    if (response.length > 0) {
+                        drawChart(response[0].formular_id);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Eroare la încărcarea formularelor:', status, error);
+                }
+            });
+        }
+
+        function drawChart(formularId) {
+            $.ajax({
+                url: 'detalii_formular.php',
+                type: 'GET',
+                data: { formularId: formularId },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.length === 0) {
+                        console.log('Nu s-au găsit date pentru formularul selectat.');
+                        return;
+                    }
+
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string', 'Emotie');
+                    data.addColumn('number', 'Număr de Feedback-uri');
+
+                    // Adăugăm datele în tabel
+                    $.each(response, function(index, item) {
+                        data.addRow([item.emotie, item.numar_feedback]);
+                    });
+
+                    var options = {
+                        title: 'Număr total de feedback-uri în funcție de emoție',
+                        pieHole: 0.4,
+                    };
+
+                    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+                    chart.draw(data, options);
+                },
+                error: function(xhr, status, error) {
+                    console.error('Eroare la încărcarea detaliilor formularului:', status, error);
+                }
+            });
+        }
+
+          function exportReport(format) {
+            var formularId = $('#formular').val();
+            var url = '';
+            if (format === 'html') {
+                url = 'export_html.php';
+            } else if (format === 'csv') {
+                url = 'export_csv.php';
+            } else if (format === 'json') {
+                url = 'export_json.php';
+            }
+            // Adaugă formularId ca parametru în URL-ul de export
+            if (formularId) {
+                url += '?formularId=' + formularId;
+            }
+            // Deschide fereastra nouă pentru a descărca fișierul
+            window.open(url, '_blank');
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Rapoarte Generale</h1>
+        
+        <label for="formular">Selectați un formular pentru raport:</label>
+        <select id="formular" name="formular" onchange="drawChart(this.value)">
+            <!-- Opțiunile vor fi populate dinamic prin JavaScript -->
+        </select><br><br>
+        <button type="button" onclick="exportReport('html')">Export HTML</button>
+        <button type="button" onclick="exportReport('csv')">Export CSV</button>
+        <button type="button" onclick="exportReport('json')">Export JSON</button>
+
+        <!-- Div pentru afișarea graficului -->
+        <div id="chart_div" style="width: 100%; height: 400px;"></div>
+        <div id="report"></div>
+    </div>
+</body>
+</html>

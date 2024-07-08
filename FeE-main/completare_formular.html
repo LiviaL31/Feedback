@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Completare formular</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Completare formular</h1>
+    </header>
+    <main class="container">
+        <form action="completare_formular.php" method="POST" id="formular">
+            <input type="hidden" id="formId" name="formId">
+            <label for="titlu">Nume:</label>
+            <input type="text" id="titlu" name="titlu" required><br>
+
+            <label for="tip">Tip:</label>
+            <input type="text" id="tip" name="tip" required><br>
+
+            <label for="date">Dată:</label>
+            <input type="text" id="date" name="date" required><br>
+
+            <label for="Locatie">Locație:</label>
+            <input type="text" id="Locatie" name="Locatie" required><br>
+
+            <label for="Organizator">Organizator:</label>
+            <input type="text" id="Organizator" name="Organizator" required><br>
+
+            <label for="Detalii">Detalii:</label>
+            <input type="text" id="Detalii" name="Detalii" required><br>
+
+            <label for="Desciere">Părere:</label>
+            <textarea id="intrebari" name="intrebari[]" rows="4" cols="50" required title="Introduceti parerea dumneavoastra"></textarea><br>
+
+            <label for="emotii">Emoții (conform modelului Plutchik):</label>
+    <select id="tipEmotie" name="tipEmotie" title="Alege emoția pe care ai simțit-o:" required>
+      <option value="" disabled selected hidden>Alege emoția pe care ai simțit-o:</option>
+      <option value="extaz">Extaz</option>
+      <option value="admiratie">Admirație</option>
+      <option value="teroare">Teroare</option>
+      <option value="uimire">Uimire</option>
+      <option value="durere">Durere</option>
+      <option value="detest">Detest</option>
+      <option value="furie">Furie</option>
+      <option value="vigilenta">Vigilență</option>
+    
+    </select><br>
+       <input type="submit" value="Trimite feedback">
+    </form>
+    </main>
+    <script>
+ document.addEventListener('DOMContentLoaded', () => {
+   // const urlParams = new URLSearchParams(window.location.search);
+    //const formIdFormuUrl = urlParams.get('id');
+    //if (formIdFormuUrl){
+    fetch('get_formid.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                throw new Error(data.error);
+            }
+
+            const formIdSesion = data.formId;
+            fetch(`configurare-formular.php?id=${formIdSesion}`)
+                    .then(response =>  response.json())
+                    .then(data => {
+
+                        // Populăm câmpurile formularului sau facem alte operații necesare
+                       // document.getElementById('formId').value = data.id;
+                        document.getElementById('titlu').value = data.nume;
+                        document.getElementById('tip').value = data.tip;
+                        document.getElementById('date').value = data.data;
+                        document.getElementById('Locatie').value = data.Locatie;
+                        document.getElementById('Organizator').value = data.Organizator;
+                        document.getElementById('Detalii').value = data.detalii;
+                        document.getElementById('intrebari').value = data.Descriere ? data.Descriere.join('\n') : '';
+                        document.getElementById('tipEmotie').value = data.tipEmotie;
+                    })
+                    .catch(error => {
+                        console.error('Eroare în preluarea datelor formularului:', error);
+                        alert('A apărut o eroare la preluarea datelor formularului.2');
+                        window.location.href = 'meniu.html';
+                    });
+        })
+        .catch(error => {
+            console.error('Eroare în preluarea ID-ului formularului:', error);
+            alert('A apărut o eroare la preluarea ID-ului formularului.1');
+            window.location.href = 'meniu.html';
+        });  
+});
+
+    </script>
+</body>
+</html>
+

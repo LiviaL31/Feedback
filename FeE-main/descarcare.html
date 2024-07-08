@@ -1,0 +1,36 @@
+// interfata pt descarcare
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rapoarte Generale</title>
+</head>
+<body>
+
+<div class="container">
+    <h1>Rapoarte Generale</h1>
+    <button onclick="downloadReport('HTML')">Descarcă raport HTML</button>
+    <button onclick="downloadReport('CSV')">Descarcă raport CSV</button>
+    <button onclick="downloadReport('JSON')">Descarcă raport JSON</button>
+</div>
+
+<script>
+function downloadReport(format) {
+    var content;
+    var filename = "raport." + format.toLowerCase();
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            content = xhr.responseText;
+            var blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+            saveAs(blob, filename);
+        }
+    };
+    xhr.open("GET", "generate_report.php?format=" + format, true);
+    xhr.send();
+}
+</script>
+
+</body>
+</html>

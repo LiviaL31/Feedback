@@ -1,0 +1,126 @@
+
+body {
+  font-family: 'Set Get', sans-serif;
+  background-image: url(Media/nou.jpg);
+   background-size: cover;
+   background-position: center;
+  margin: 0;
+  padding: 0;
+}
+.button {
+display: inline-block;
+padding: 8px 8px;
+background-color:#6c57ca;
+color: #fff;
+text-decoration: none;
+border-radius: 5px;
+}
+.logout-button{
+background-color:red; 
+color: white;
+}
+
+.container {
+  width: 80%;
+  max-width: 800px;
+  margin: 50px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #0b3766;
+}
+header {
+  background-color: #cdeaf8;
+  color: #fff;
+  padding: 20px;
+  width: 80%;
+  max-width: 800px;
+  margin: 50px auto;
+  border-radius: 8px;
+
+}
+
+
+header h1 {
+  margin: 0;
+}
+header nav {
+  display: flex; /*  pentru a alinia elementele pe aceeași linie */
+  flex-wrap: wrap; /* fac ca elementele sa fie pe mai multe linii */
+  justify-content: space-evenly; /* face spațiile între elemente egala */
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+
+}
+
+nav ul li {
+  display: inline-block;
+  margin-right:10px;
+}
+nav ul li:last-child{
+  margin-right: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.container ul{
+  column-count: 2;
+  column-gap: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  margin-bottom: 10px;
+}
+
+form input, form textarea, form select {
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form button {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.logout {
+  display: flex;
+  justify-content: center; /* Centrare orizontală */
+  margin-top: 20px; /* Adaugă spațiu deasupra butonului */
+}
+.logout button {
+  display: inline-block;
+  padding: 10px 10px; /* Dimensiunea butonului */
+  font-size: 16px; /* Dimensiunea textului */
+  background-color: #6c57ca; /* Culoarea de fundal */
+  color: white; /* Culoarea textului */
+  border: none; /* Eliminarea conturului implicit */
+  border-radius: 5px; /* Colțuri rotunjite */
+  cursor: pointer; /* Schimbarea cursorului la hover */
+  align-items: center;
+  justify-content: center;
+}

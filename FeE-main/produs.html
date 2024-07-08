@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback Produs</title>
+<link rel="stylesheet" href="style-getFeedback.css">
+</head>
+<body>
+
+<header>
+  <h1>Feedback Produs</h1>
+  <br>
+  <nav>
+    <ul>
+      <li><a href="eveniment.html" class="button">Evenimente</a></li>
+      <li><a href="persoana.html" class="button">Persoane</a></li>
+      <li><a href="locatie.html" class="button">Locații</a></li>
+      <li><a href="serviciu.html" class="button">Servicii</a></li>
+      <li><a href="artefact_artistic.html" class="button">Artefacte Artistice</a></li>
+      <li><a href="detalii_feedback.html" class="button">Caută formular</a></li>
+      <li><a href="rapoarte_generale.html" class="button">Rapoarte Generale</a></li>
+      <li><a href="meniu.html" class="button"> Pagina Mea</a></li>
+      <li><a href="logout.php" class="button logout-button">Delogare</a></li> <!-- Adăugare buton de delogare -->
+
+    </ul>
+  </nav>
+</header>
+
+<div class="container">
+  <form id="produsFeedbackForm">
+    <label for="produsNume">Nume Produs:</label>
+    <input type="text" id="produsNume" name="produsNume">
+    <br>
+    <label for="produsTip">Tip de Produs:</label>
+    <input type="text" id="produsTip" name="produsTip">
+    <br>
+    <label for="produsDescriere">Descriere Produs:</label>
+    <textarea id="produsDescriere" name="produsDescriere" rows="4"></textarea>
+    <br>
+    <label for="produsEmotie">Selectează Emoția:</label>
+    <select id="produsEmotie" name="produsEmotie">
+      <option value="bucurie">Bucurie</option>
+      <option value="încredere">Încredere</option>
+      <option value="frică">Frică</option>
+      <option value="surpriză">Surpriză</option>
+      <option value="tristețe">Tristețe</option>
+      <option value="dezgust">Dezgust</option>
+      <option value="mânie">Mânie</option>
+      <option value="anticipație">Anticipație</option>
+    </select>
+    
+    <br>
+    <button type="submit">Trimite Feedback</button>
+  </form>
+</div>
+
+</body>
+</html>

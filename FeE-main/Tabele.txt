@@ -1,0 +1,48 @@
+CREATE TABLE  conturi_utilizator (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nume_utilizator VARCHAR(255),
+    parola VARCHAR(255),
+    email VARCHAR(255)
+);
+
+CREATE TABLE formulare (
+  id int(3) NOT NULL AUTO_INCREMENT,
+  user_id int(4) unsigned NOT NULL,
+  nume varchar(250) DEFAULT NULL,
+  tip varchar(50) NOT NULL,
+  data date NOT NULL,
+  Locatie varchar(100) NOT NULL,
+  Organizator varchar(200) NOT NULL,
+  detalii varchar(2500) DEFAULT NULL,
+  creat date NOT NULL DEFAULT current_timestamp(),
+  start date NOT NULL,
+  end date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `foring5` (`user_id`),
+  CONSTRAINT `foring5` FOREIGN KEY (`user_id`) REFERENCES `conturi_utilizator` (`ID`)
+);
+
+CREATE TABLE rapoarte (
+  id int(4) NOT NULL AUTO_INCREMENT,
+  formular_id int(3) NOT NULL,
+  raport_date date NOT NULL,
+  created_at timestamp NOT NULL DEFAULT current_timestamp(),
+  raport_title varchar(500) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `foring2` (`formular_id`),
+  CONSTRAINT `foring2` FOREIGN KEY (`formular_id`) REFERENCES `formulare` (`id`)
+);
+
+CREATE TABLE raspunsuri (
+  id int(5) NOT NULL AUTO_INCREMENT,
+  formular_id int(3) NOT NULL,
+  user_id int(4) unsigned NOT NULL,
+  created_at timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  Descriere varchar(1000) NOT NULL,
+  Emotie varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `Foring_key` (`formular_id`),
+  KEY `foring` (`user_id`),
+  CONSTRAINT `Foring_key` FOREIGN KEY (`formular_id`) REFERENCES `formulare` (`id`),
+  CONSTRAINT `foring` FOREIGN KEY (`user_id`) REFERENCES `conturi_utilizator` (`ID`)
+);

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalii Feedback</title>
+    <link rel="stylesheet" href="style.css"> <!-- Adăugați aici calea către fișierul CSS -->
+</head>
+<body>
+
+<header>
+    <h1>Detalii Feedback</h1>
+    <br>
+    <nav>
+        <ul>
+            <li><a href="eveniment.html" class="button">Creează formular</a></li>
+            <li><a href="rapoarte_generale.html" class="button">Rapoarte mele</a></li>
+            <li><a href="meniu.html" class="button">Pagina Mea</a></li>
+            <li><a href="logout.php" class="button logout-button">Delogare</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container">
+    <h2>Găsește un formular după ID</h2>
+    <div id="detaliiFeedbackResult">
+        <?php if (isset($mesaj_raspunsuri)): ?>
+            <div class="message"><?php echo $mesaj_raspunsuri; ?></div>
+            <br>
+        <?php endif; ?>
+    </div>
+    <form action="cauta_formular.php" method="post" id="detaliiFeedbackForm">
+        <label for="detaliiFeedbackID">ID Feedback:</label>
+        <input type="text" id="detaliiFeedbackID" name="detaliiFeedbackID" required>
+        <br>
+        <button type="submit">Caută Feedback</button>
+    </form>
+    
+</div>
+
+</body>
+</html>

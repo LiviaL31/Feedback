@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meniul Meu</title>
+<link rel="stylesheet" href="style-getFeedback.css">
+   <style>
+  .table-container {
+      overflow-x: auto;
+  }
+
+  table {
+      width: 100%;
+      border-collapse: collapse;
+  }
+
+  th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+  }
+
+  th {
+      background-color: #f2f2f2;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Feedback</h1>
+  <br>
+  <nav>
+    <ul>
+      <li><a href="eveniment.html" class="button">Creează formular</a></li>
+      <li><a href="detalii_feedback.html" class="button">Caută formular</a></li>
+      <li><a href="rapoarte_generale.html" class="button">Rapoartele mele</a></li>
+      <li><a href="logout.php" class="button logout-button">Delogare</a></li> <!-- Adăugare buton de delogare -->
+
+    </ul>
+  </nav>
+</header>
+
+<div class="myfeedback">
+  <form id="myfeedbackform">
+    <h1>Formulare active</h1>
+           <div class="table-container">
+    <table id="activeFormsTable">
+      <thead>
+        <tr>
+        <th>ID Formular</th>
+        <th>Tip </th>
+        <th>Nume</th>
+        <th>Activ până pe </th>
+       </tr>
+       </thead>
+
+       <tbody>
+
+       </tbody>
+    </table>
+           </div>
+  </form>
+</div>
+
+<div class="myfeedback">
+  <form id="myformsform">
+    <h1>Formularele mele</h1>
+      <div class="table-container">
+    <table id="myFormsTable">
+      <thead>
+        <tr>
+        <th>ID Formular</th>
+        <th>Tip Formular</th>
+        <th>Nume</th>
+        <th>Data creeare</th>
+        <th>Data începere</th>
+        <th>Data expirare</th>
+       </tr>
+       </thead>
+
+       <tbody>
+
+       </tbody>
+        
+
+    </table>
+      </div>
+  </form>
+</div>
+
+<script>
+  fetch('preia-formulare.php')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Nu s-a putut obține datele de la server.');
+    }
+    return response.json(); // Schimbă în text pentru verificare
+  })
+  .then(data => {
+    console.log(data); // Afișează textul pentru verificare
+    //const data = JSON.parse(text); // Parsează manual JSON-ul
+    //console.log(data); // Verifică datele parse-ate
+
+    if (data.userForms){
+     const myFormsTableBody = document.querySelector('#myFormsTable tbody');
+      myFormsTableBody.innerHTML = '';
+      data.userForms.forEach(formular => {
+        const row = myFormsTableBody.insertRow();
+        row.innerHTML = `
+          <td>${formular.id}</td>
+          <td>${formular.tip}</td>
+          <td>${formular.nume}</td>
+          <td>${formular.creat}</td>
+          <td>${formular.start}</td>
+          <td>${formular.end}</td>
+        `;
+      });
+    }
+
+    if (data.activeForms) {
+      const activeFormsTableBody = document.querySelector('#activeFormsTable tbody');
+      activeFormsTableBody.innerHTML = '';
+      data.activeForms.forEach(formular => {
+        const row = activeFormsTableBody.insertRow();
+        row.innerHTML = `
+          <td><a href="set_formid.php?id=${formular.id}">${formular.id}</a></td>
+          <td>${formular.tip}</td>
+          <td>${formular.nume}</td>
+          <td>${formular.end}</td>
+        `;
+      });
+    }
+  })
+  .catch(error => console.error('Eroare în preluarea datelor:', error));
+
+</script>
+
+
+</body>
+</html>

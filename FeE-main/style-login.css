@@ -1,0 +1,66 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url(Media/nou.jpg);
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    width: 80%;
+    max-width: 400px;
+    margin: 100px auto;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+input[type="text"],
+input[type="password"],
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+input[type="submit"] {
+    background-color: #6c57ca;
+    color: white;
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background-color: #3c2dc0;
+}
+input[type="email"]{
+    width: 100%;
+    box-sizing: border-box;
+}
+.register-link {
+    text-align: center;
+    margin-top: 20px;
+}
+.register-link a {
+    color: #6c57ca;
+    text-decoration: none;
+    font-weight: bold;
+}
+.register-link a:hover {
+    text-decoration: underline;
+}
+label{
+    display: block;
+}
+.error-message{
+    color: red;
+}
+.message{
+    color: red;
+}

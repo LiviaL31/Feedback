@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback on Everything - Înregistrare</title>
+    <link rel="stylesheet" href="style-register.css">
+   
+</head>
+<body>
+    <div class="container">
+        <h1>Feedback on Everything</h1>
+        <div id="error-message">
+            <?php if (!empty($message)): ?>
+                <div class="error-message <?php echo $message_type; ?>"><?php echo $message; ?></div>
+            <?php endif; ?>
+        </div>
+        <!-- Formular de înregistrare -->
+        <form action="creare-cont.php" method="post">
+            <label for="username">Nume utilizator:</label>
+            <input type="text" id="username" name="username" placeholder="Nume de utilizator" required>
+            
+            <label for="email">Adresa de email:</label>
+            <input type="email" if="email" name="email" placeholder="Adresă de email" required>
+           
+           <label for="password">Parolă:</label>
+            <input type="password" name="password" placeholder="Parolă" required>
+            <input type="submit" value="Înregistrare">
+        </form>
+        <!-- Link către pagina de autentificare -->
+        <div class="login-link">
+            Aveți deja un cont? <a href="login.html">Autentificați-vă aici</a>
+        </div>
+    </div>
+</body>
+</html>

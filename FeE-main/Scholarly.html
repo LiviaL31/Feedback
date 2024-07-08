@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structura Proiectului conform Cerințelor IEEE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        h2 {
+            color: #555;
+        }
+
+        h3 {
+            color: #777;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Structura Proiectului conform Cerințelor IEEE</h1>
+
+    <h2>1. Scopul Proiectului</h2>
+    <p>Scopul acestui proiect este de a dezvolta un instrument web pentru colectarea și gestionarea feedback-ului anonim, utilizând standardele IEEE pentru a asigura conformitatea și calitatea.</p>
+    <p>FEEDBACK ON EVERYTHING este un site ce oferă posibilitatea de a oferi un feedback pentru diverse categorii de obiecte, persoane, locuri sau evenimente precum: festivaluri, târguri, doctori, profesori, atracții turistice, produce cosmetice, obiecte vestimentare, servicii de IT, de îngrijire personală, piese de teatru, concerte. Pentru toate locurile pentru care avem informații de la utilizatori creem un rapoarte ce furnizează interpretarea a opiniilor,referitaore la experiența avută cu acele locuri, persoane, obiecte, evenimente etc, pentru a te ajuta să în alegrile pe care trebuia să le faci și a fi informat dinainte.  </p>
+
+    <h2>2. Rezumat</h2>
+    <p>În cadrul acestui proiect, ne propunem să dezvoltăm un instrument web care să permită utilizatorilor să ofere feedback anonim pentru diverse aspecte, cum ar fi evenimente, produse sau servicii. Vom utiliza standardele IEEE pentru a asigura o implementare corespunzătoare și pentru a satisface nevoile utilizatorilor.</p>
+
+    <h2>3. Convenții și Audiență </h2>
+    <p>Convențiile de cod și stil vor urma standardele recomandate de IEEE. Audiența țintă pentru acest instrument web sunt persoanele și companiile care doresc să colecteze și să gestioneze feedback-ul anonim al utilizatorilor lor.</p>
+    <h3> 3.2 Interfețele utizatorului</h3>
+    <p> Interfața utilizatorului pentru EmoFeedback va fi concepută în conformitate cu cele mai bune practici de UX/UI și va urma standardele de design recomandate de IEEE pentru a asigura o experiență intuitivă pentru utilizatori.
+    <h4> 3.2.1 Componente ale Interfeței Utilizatorului: </h4>
+       <ul>
+        <li>Pagină de Start(index.html) O pagină de start prietenoasă și clară va oferi utilizatorilor informații de bază despre platformă și in0strucțiuni pentru a începe să utilizeze serviciul.</li>      
+        <li>Pagină rapoarte_generale.html ce va afișa rapoartele generale despre feedback-ul colectat.Rapoarte Generale prezintă informații agregate.</li>
+        <li>Pagină detalii_feedback.html ce va afișa feedback-ul căutat de utlizator după ID.</li>
+    </ul>     
+    <h2>4. Caracteristici ale Sistemului</h2>
+
+    <h3>4.1 Caracteristica Sistemului 1: Colectarea Feedback-ului</h3>
+    <p>Scopul acestei caracteristici este de a permite utilizatorilor să ofere feedback anonim pentru diverse aspecte, cum ar fi evenimente, produse sau servicii. Această caracteristică are prioritate ridicată.</p>
+    
+    <h3>4.2 Caracteristica Sistemului 2: Generarea Rapoartelor</h3>
+    <p>Scopul acestei caracteristici este de a permite generarea rapoartelor detaliate despre feedback-ul colectat. Această caracteristică are prioritate medie.</p>
+    <h3>4.3 Link-uri formatate</h3>
+    <p>Legătura între paginile site-ului este făcută prin link-uri, ce sunt prezentate într-o manieră cât mai plăcută cu ajutorul butoanelor. Menținând aceeași culoare, acelși font al textului, ceeași culaore a textului, și același stil pe toate paginile.  </p>
+    
+    <h2>5. Rezumatul Funcționalităților</h2>
+    <ul>
+        <li>Dezvoltarea unei interfețe de utilizator intuitive pentru colectarea feedback-ului anonim.</li>
+        <li>Implementarea unui sistem de export în format CSV pentru rapoartele de feedback.</li>
+        <li>Utilizarea API-urilor pentru integrarea cu alte sisteme sau servicii.</li>
+    </ul>
+
+    <h2>6. Biblioteci și Dependințe</h2>
+    <p>Pentru acest proiect, vom folosi biblioteci și dependințe necesare pentru a asigura funcționarea corectă a instrumentului web. Detaliile specifice despre aceste biblioteci și dependințe vor fi menționate în documentația proiectului.</p>
+
+    <h2>7. Design </h2>
+    <p>Aspectul și design-ul instrumentului web vor urma standardele de UX și UI recomandate de IEEE,îndreptăndu-ne spre o tentă caldă de albastru.</p>
+
+    <h2>8. Utilizarea API-urilor</h2>
+    <p>Vom utiliza API-uri pentru a permite integrarea instrumentului web cu alte sisteme sau servicii. Planificăm să implementăm exportul datelor în format CSV pentru rapoartele de feedback, conform unui ghid de export specificat.</p>
+    <h4>Date de Intrare:</h4>
+    <ul>
+        <li>"Lucrurile" pentru care se va oferi feedback</li>
+        <li>Răspunsurile specifice fiecărui "lucru"</li>
+    </ul>
+
+    <h4>API:</h4>
+    <ul>
+        <li>Endpoint-uri pentru gestionarea "lucrurilor" și a răspunsurilor acestora</li>
+        <li>Endpoint-uri pentru colectarea și prelucrarea feedback-ului</li>
+        <li>Endpoint-uri pentru generarea rapoartelor</li>
+    </ul>
+
+    <h2>9. Conectarea la Serverul de Baze de Date</h2>
+    <p>Vom utiliza MySQL și extensia MySQLi pentru a ne conecta la serverul de baze de date. Credențialele de conectare (utilizator și parolă) vor fi gestionate cu atenție pentru a asigura securitatea datelor. Vom avea o bază de date numită feedback_db și o tabelă numită feedback în care să salvăm feedback-ul utilizatorilor. Conectarea la baza de date se va face în PHP și vom crea un fișier numit conectare_bd.php în care vom include codul de conectare la baza de date.</p>
+</div>
+
+<footer>
+    <nav>
+      <ul>
+        <li><a href="index.html">Pagina Principală</a></li>
+        <li><a href="detalii_feedback.html">Detalii Feedback</a></li>
+        <li><a href="rapoarte-evenimente.html" title="Rapoarte Evenimente">Rapoarte Evenimente</a></li>
+        <li><a href="rapoarte-persoane.html" title="Rapoarte Persoane">Rapoarte Persoane</a></li>
+        <li><a href="rapoarte-locatii.html" title="Rapoarte Locații">Rapoarte Locații</a></li>
+        <li><a href="rapoarte-produse.html" title="Rapoarte Produse">Rapoarte Produse</a></li>
+        <li><a href="rapoarte-servicii.html" title="Rapoarte Servicii">Rapoarte Servicii</a></li>
+        <li><a href="rapoarte-artefact_artistic.html" title="Rapoarte Artefacte Artistice">Rapoarte Artefacte Artistice</a></li>
+      </ul>
+    </nav>
+</footer>
+  
+    
+</body>
+</html>
+</html>

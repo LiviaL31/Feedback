@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback Eveniment</title>
+<link rel="stylesheet" href="style-getFeedback.css">
+</head>
+<body>
+
+<header>
+  <h1>Feedback Eveniment</h1>
+  <br>
+  <nav>
+    <ul>
+      <li><a href="detalii_feedback.html" class="button">Caută formular</a></li>
+      <li><a href="rapoarte_generale.html" class="button">Rapoarte mele</a></li>
+      <li><a href="meniu.html" class="button"> Pagina Mea</a></li>
+      <li><a href="logout.php" class="button logout-button">Delogare</a></li> <!-- Adăugare buton de delogare -->
+    </ul>
+  </nav>
+</header>
+
+<div class="container">
+  <form id="evenimentFeedbackForm"  method="POST" action="eveniment.php">
+    <label for="evenimentNume">Nume:</label>
+    <input type="text" id="evenimentNume" name="evenimentNume" required>
+    <br>
+    <label for="tipFormular">Tip:</label>
+    <select id="tipFormular" name="tipFormular" title="Alege tipul" required>
+      <option value="" disabled selected hidden>Alege o opțiune</option>
+      <option value="eveniment">Eveniment</option>
+      <option value="persoana">Persoană</option>
+      <option value="Locație">Locație</option>
+      <option value="Produs">Produs</option>
+      <option value="serviciu">Serviciu</option>
+      <option value="Act artistic">Act Artistic</option>
+    
+    </select>
+
+    <br>
+    <label for="evenimentData">Dată:</label>
+    <input type="date" id="evenimentData" name="evenimentData">
+    <br>
+    <label for="evenimentLocatie">Locație:</label>
+    <input type="text" id="evenimentLocatie" name="evenimentLocatie">
+    <br>
+    <label for="evenimentOrganizator">Organizator:</label>
+    <input type="text" id="evenimentOrganizator" name="evenimentOrganizator">
+    <br>
+    <label for="evenimentDetalii">Detalii:</label>
+    <textarea id="evenimentDetalii" name="evenimentDetalii" rows="4"></textarea>
+    <br>
+    <label for="formularStart">Începe pe:</label>
+    <input type="date" id="formularStart" name="formularStart">
+    <br>
+    <label for="formularEnd">Încheie pe:</label>
+    <input type="date" id="formularEnd" name="formularEnd">
+    <br>
+
+    <button type="submit">Generează formular</button>
+  </form>
+</div>
+
+</body>
+</html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('formularStart').setAttribute('min', today);
+
+        document.getElementById('formularStart').addEventListener('change', function() {
+            const startDate = this.value;
+            document.getElementById('formularEnd').setAttribute('min', startDate);
+        });
+
+        // Adaugă eveniment pentru trimiterea formularului
+        document.getElementById('evenimentFeedbackForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Previne trimiterea formularului în mod tradițional
+
+            const errorMessageDiv = document.getElementById('error-message');
+
+            const formData = new FormData(this);
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'eveniment.php', true);
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        window.location.href = 'meniu.html'; // Redirecționează la pagina dorită
+                    } else {
+                        errorMessageDiv.textContent = response.message; // Afișează mesajul de eroare
+                    }
+                } else {
+                    errorMessageDiv.textContent = 'A apărut o eroare la trimiterea formularului.';
+                }
+            };
+
+            xhr.send(formData);
+        });
+    });
+</script>
